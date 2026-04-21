@@ -27,10 +27,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/custom-software-contact-form-cover.webp",
-        width: 2560,
-        height: 1440,
-        alt: "Tera — custom software for U.S. businesses"
+        url: "/tera-open-graph-1200x630.png",
+        width: 1200,
+        height: 630,
+        alt: "Tera — custom websites and software for U.S. businesses"
       }
     ]
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tera | Custom websites & software for U.S. businesses",
     description: siteConfig.description,
-    images: ["/custom-software-contact-form-cover.webp"]
+    images: ["/tera-open-graph-1200x630.png"]
   },
   robots: { index: true, follow: true },
   icons: {
