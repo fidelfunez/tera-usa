@@ -1,0 +1,4 @@
+# Static export (Next.js `output: "export"` → `out/`)
+[build]
+  command = "npm run build"
+  publish = "out"
