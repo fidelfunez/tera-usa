@@ -11,7 +11,9 @@ export function Footer() {
             <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-white/10 p-0.5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/tera-logo-transparent.webp"
+                src="/tera-nav-logo-96.webp"
+                width={96}
+                height={96}
                 alt={siteConfig.name}
                 className="h-full w-full scale-105 object-contain"
               />

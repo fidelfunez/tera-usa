@@ -19,12 +19,15 @@ function ProjectScreenshot({
   imageSrc,
   title,
   imageFit = "contain",
-  imageFocus = "center"
+  imageFocus = "center",
+  priority = false
 }: {
   imageSrc: string;
   title: string;
   imageFit?: PortfolioProject["imageFit"];
   imageFocus?: PortfolioProject["imageFocus"];
+  /** First project cards: eager load so mobile PSI can resolve LCP (avoids NO_LCP with lazy + in-viewport). */
+  priority?: boolean;
 }) {
   const fit = imageFit === "cover" ? "object-cover" : "object-contain";
   const position = focusClass[imageFocus ?? "center"] ?? focusClass.center;
@@ -35,8 +38,9 @@ function ProjectScreenshot({
         src={imageSrc}
         alt={`${title} — product preview`}
         fill
+        priority={priority}
         className={`${fit} ${position}`}
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 48vw, 560px"
       />
     </div>
   );
@@ -67,13 +71,15 @@ function ProjectVisual({
   title,
   accentClass,
   imageFit,
-  imageFocus
+  imageFocus,
+  imagePriority
 }: {
   imageSrc: string | null;
   title: string;
   accentClass: string;
   imageFit?: PortfolioProject["imageFit"];
   imageFocus?: PortfolioProject["imageFocus"];
+  imagePriority?: boolean;
 }) {
   if (imageSrc) {
     return (
@@ -82,6 +88,7 @@ function ProjectVisual({
         title={title}
         imageFit={imageFit}
         imageFocus={imageFocus}
+        priority={imagePriority}
       />
     );
   }
@@ -119,8 +126,8 @@ export function Portfolio() {
           {portfolioProjects.map((project, index) => (
             <motion.article
               key={project.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-navy/80 shadow-[0_18px_45px_rgba(0,0,0,0.45)] transition hover:-translate-y-0.5 hover:border-electric-blue/50 hover:shadow-[0_22px_55px_rgba(0,0,0,0.5)]"
@@ -132,6 +139,7 @@ export function Portfolio() {
                   accentClass={`bg-gradient-to-br ${accents[index % accents.length]}`}
                   imageFit={project.imageFit}
                   imageFocus={project.imageFocus}
+                  imagePriority={index < 2}
                 />
               </div>
 

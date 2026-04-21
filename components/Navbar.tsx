@@ -12,7 +12,9 @@ export function Navbar() {
           <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-lg bg-white/10 p-1">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/tera-logo-transparent.webp"
+              src="/tera-nav-logo-96.webp"
+              width={96}
+              height={96}
               alt={siteConfig.name}
               className="h-full w-full scale-105 object-contain"
             />
