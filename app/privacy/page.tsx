@@ -9,11 +9,20 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Privacy | Tera",
     description: "How Tera handles information you submit through buildwithtera.com.",
-    url: "/privacy"
+    url: "/privacy",
+    images: [
+      {
+        url: "/tera-logo.webp",
+        width: 500,
+        height: 500,
+        alt: "Tera"
+      }
+    ]
   },
   twitter: {
     title: "Privacy | Tera",
-    description: "How Tera handles information you submit through buildwithtera.com."
+    description: "How Tera handles information you submit through buildwithtera.com.",
+    images: ["/tera-logo.webp"]
   }
 };
 
@@ -39,7 +48,7 @@ export default function PrivacyPage() {
         <h1 className="mt-10 text-3xl font-semibold tracking-tight text-white md:text-4xl">
           Privacy
         </h1>
-        <p className="mt-2 text-sm text-white/50">Last updated: April 10, 2026</p>
+        <p className="mt-2 text-sm text-white/50">Last updated: April 20, 2026</p>
 
         <div className="mt-10 space-y-6 text-base leading-relaxed">
           <p>

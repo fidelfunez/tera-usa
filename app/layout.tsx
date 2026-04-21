@@ -24,12 +24,21 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: "Tera",
     locale: "en_US",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/custom-software-contact-form-cover.webp",
+        width: 2560,
+        height: 1440,
+        alt: "Tera — custom software for U.S. businesses"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Tera | Custom websites & software for U.S. businesses",
-    description: siteConfig.description
+    description: siteConfig.description,
+    images: ["/custom-software-contact-form-cover.webp"]
   },
   robots: { index: true, follow: true },
   icons: {
@@ -46,12 +55,14 @@ export const metadata: Metadata = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${siteConfig.url}/#organization`,
   name: "Tera",
   url: siteConfig.url,
   logo: `${siteConfig.url}/tera-logo.webp`,
   description: siteConfig.description,
   email: siteConfig.contactEmail,
-  areaServed: { "@type": "Country", name: "United States" }
+  areaServed: { "@type": "Country", name: "United States" },
+  sameAs: [siteConfig.social.facebook, siteConfig.social.instagram]
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

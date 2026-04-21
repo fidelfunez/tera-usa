@@ -41,22 +41,22 @@ export function FAQ() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.25, delay: index * 0.04 }}
               >
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-between gap-4 text-left"
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                >
-                  <span className="text-sm font-medium text-white/90 md:text-base">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={`h-4 w-4 flex-shrink-0 text-white/60 transition-transform ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                    aria-hidden
-                  />
-                </button>
+                <h3 className="m-0 text-base md:text-lg">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between gap-4 text-left font-medium text-white/90"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-sm md:text-base">{item.question}</span>
+                    <ChevronDown
+                      className={`h-4 w-4 flex-shrink-0 text-white/60 transition-transform ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                      aria-hidden
+                    />
+                  </button>
+                </h3>
                 {isOpen && <p className="mt-2 text-sm text-white/70">{item.answer}</p>}
               </motion.div>
             );

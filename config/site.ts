@@ -15,7 +15,7 @@ export const siteConfig = {
     if (/^https?:\/\//i.test(raw)) return raw;
     return `https://formspree.io/f/${raw}`;
   })(),
-  contactEmail: "fidel@teralatam.co",
+  contactEmail: "howdy@buildwithtera.com",
   navLinks: [
     { href: "#work", label: "Work" },
     { href: "#engagements", label: "What we build" },
