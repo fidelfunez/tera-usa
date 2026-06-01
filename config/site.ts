@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Tera",
   tagline: "Custom software—clear scope, no agency runaround.",
-  url: "https://buildwithtera.com",
+  url: "https://www.buildwithtera.com",
   description:
     "Tera builds custom websites, apps, and internal tools for U.S. businesses. We ship quickly, keep adoption simple, and scope work to how you already operate.",
   /**
