@@ -1,79 +1,186 @@
-import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/config/site";
+import Script from "next/script";
+import { siteConfig } from "../config/site";
+import { faqs } from "../config/faq";
 
-const jakarta = Plus_Jakarta_Sans({
+const GA_MEASUREMENT_ID = "G-0YVW95Z8SV";
+
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-jakarta",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap"
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: "Tera | Custom websites & software for U.S. businesses",
-    template: "%s | Tera"
+const codePro = localFont({
+  src: [
+    {
+      path: "../public/fonts/CODE-Light.otf",
+      weight: "300",
+      style: "normal"
+    },
+    {
+      path: "../public/fonts/CODE-Bold.otf",
+      weight: "700",
+      style: "normal"
+    }
+  ],
+  variable: "--font-code-pro",
+  display: "swap"
+});
+
+const pageTitle =
+  "Tera | Arquitectura digital para empresas en Honduras y LATAM";
+
+export const metadata = {
+  title: pageTitle,
+  icons: {
+    icon: [
+      { url: "/favicon/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon.ico", sizes: "any" }
+    ],
+    apple: "/favicon/apple-touch-icon.png",
+    shortcut: "/favicon/favicon.ico"
   },
+  manifest: "/favicon/site.webmanifest",
   description: siteConfig.description,
-  alternates: { canonical: "/" },
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
-    title: "Tera | Custom websites & software for U.S. businesses",
+    title: pageTitle,
     description: siteConfig.description,
     url: siteConfig.url,
-    siteName: "Tera",
-    locale: "en_US",
-    type: "website",
+    siteName: siteConfig.name,
     images: [
       {
-        url: "/tera-open-graph-1200x630.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Tera — custom websites and software for U.S. businesses"
+        alt: "Tera · Arquitectura digital para empresas en LATAM"
       }
-    ]
+    ],
+    locale: siteConfig.locale.replace("_", "-"),
+    type: "website"
+  },
+  alternates: {
+    canonical: siteConfig.url
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tera | Custom websites & software for U.S. businesses",
+    title: pageTitle,
     description: siteConfig.description,
-    images: ["/tera-open-graph-1200x630.png"]
-  },
-  robots: { index: true, follow: true },
-  icons: {
-    icon: [
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon/favicon.ico" }
-    ],
-    apple: "/favicon/apple-touch-icon.png"
-  },
-  manifest: "/favicon/site.webmanifest"
+    images: [siteConfig.ogImage]
+  }
 };
 
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": `${siteConfig.url}/#organization`,
-  name: "Tera",
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/tera-logo.webp`,
-  description: siteConfig.description,
-  email: siteConfig.contactEmail,
-  areaServed: { "@type": "Country", name: "United States" },
-  sameAs: [siteConfig.social.facebook, siteConfig.social.instagram]
-};
+export default function RootLayout({
+  children
+}: {
+  children: React.ReactNode;
+}) {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: siteConfig.brandName,
+    alternateName: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tegucigalpa",
+      addressRegion: "Francisco Morazán",
+      addressCountry: "HN"
+    },
+    areaServed: ["Honduras", "Guatemala", "El Salvador", "Costa Rica", "Latinoamérica"],
+    email: siteConfig.contactEmail,
+    knowsAbout: [
+      "Desarrollo web",
+      "Aplicaciones móviles",
+      "Automatización",
+      "Inteligencia artificial",
+      "Arquitectura de software"
+    ]
+  };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer
+      }
+    }))
+  };
+
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "ProfessionalService",
+      name: siteConfig.brandName
+    },
+    author: {
+      "@type": "Person",
+      name: siteConfig.testimonial.author
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: 5,
+      bestRating: 5,
+      worstRating: 1
+    },
+    reviewBody: siteConfig.testimonial.quote
+  };
+
+  const webSiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.brandName,
+    alternateName: siteConfig.name,
+    url: siteConfig.url
+  };
+
   return (
-    <html lang="en" className={jakarta.variable}>
-      <body className="min-h-screen bg-navy font-sans text-white antialiased">
+    <html lang="es" className={`${inter.variable} ${codePro.variable}`}>
+      <body className="min-h-screen bg-white font-sans text-ink antialiased">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         {children}
         <script
           type="application/ld+json"
           suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
         />
       </body>
     </html>

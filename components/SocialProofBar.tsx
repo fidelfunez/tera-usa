@@ -2,27 +2,30 @@
 
 import { motion } from "framer-motion";
 
-const segments = [
-  "Home services",
-  "Clinics",
-  "Construction",
-  "Retail",
-  "Logistics",
-  "Professional services",
-  "Hospitality",
-  "Franchises",
-  "Manufacturing",
-  "Consulting",
-  "Legal",
-  "Creative studios"
+const businesses = [
+  "Estudios",
+  "Blogs",
+  "Startups",
+  "Hoteles",
+  "Bancos",
+  "Inmobiliarias",
+  "Clínicas",
+  "Concesionarias",
+  "Restaurantes",
+  "Ferreterías",
+  "Salones de belleza",
+  "Consultores",
+  "Tiendas en línea",
+  "Bufetes Jurídicos",
 ];
 
 export function SocialProofBar() {
   return (
-    <section className="shrink-0 border-y border-white/5 bg-[#060b16]/95 py-4 backdrop-blur-[2px]">
+    <section className="border-y border-white/5 bg-[#060b16] py-4">
       <div className="container flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-white/60 md:text-[11px]">
-          For teams outgrowing one-size-fits-all software
+          Empresas en Honduras, Guatemala, El Salvador y Costa Rica confían en
+          Tera
         </p>
         <div className="overflow-hidden">
           <motion.div
@@ -31,14 +34,14 @@ export function SocialProofBar() {
             animate={{ x: "-50%" }}
             transition={{
               repeat: Infinity,
-              duration: 28,
+              duration: 24,
               ease: "linear"
             }}
           >
-            {[...segments, ...segments].map((item, index) => (
+            {[...businesses, ...businesses].map((item, index) => (
               <span key={`${item}-${index}`} className="whitespace-nowrap">
                 {item}
-                {index !== segments.length * 2 - 1 && (
+                {index !== businesses.length * 2 - 1 && (
                   <span className="mx-3 text-white/20">·</span>
                 )}
               </span>
@@ -49,3 +52,4 @@ export function SocialProofBar() {
     </section>
   );
 }
+

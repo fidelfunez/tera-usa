@@ -1,58 +1,60 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Zap,
-  Users,
-  Smartphone,
+  MapPin,
+  MessageCircle,
   Search,
   BarChart3,
-  ShieldCheck,
+  Lock,
   User,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "../config/site";
 
 const CARD_WIDTH = 280;
-const CARD_HEIGHT = 196;
+const CARD_HEIGHT = 180;
 const GAP = 24;
 
 const features = [
   {
     icon: Zap,
-    title: "Ship in weeks",
-    description: "Tight scope, clear milestones, and a build that does not drift for months."
+    title: "Entrega rápida",
+    description: "Tu página web lista y optimizada en días, no en meses."
   },
   {
-    icon: Users,
-    title: "Talk to the builders",
-    description: "You work with the people writing the code—not a new account manager every week."
+    icon: MapPin,
+    title: "Pensado para LATAM",
+    description:
+      "Conocemos cómo buscan y compran las personas en la región."
   },
   {
-    icon: Smartphone,
-    title: "Built for real devices",
-    description: "Thumb-friendly flows for crews in the field. Fast pages for customers. Clear screens for admins."
+    icon: MessageCircle,
+    title: "WhatsApp Integrado",
+    description: "Tu cliente te escribe directo en el medio de comunicación que usa."
   },
   {
     icon: Search,
-    title: "Discoverable by design",
-    description: "Marketing sites launch with solid technical SEO—not a last-minute checklist."
+    title: "SEO desde el primer día",
+    description: "Tu sitio nace listo para aparecer en Google y demas buscadores."
   },
   {
     icon: BarChart3,
-    title: "Measure what matters",
-    description: "Analytics you can read, so the next improvement is an informed choice—not a guess."
+    title: "Resultados medibles",
+    description:
+      "Te mostramos qué está pasando con tu página con datos reales."
   },
   {
-    icon: ShieldCheck,
-    title: "Own your roadmap",
-    description: "Clean handoff, sensible defaults, and optional support—without lock-in games."
+    icon: Lock,
+    title: "Sin contratos largos",
+    description: "Cancelás cuando querrás, sin ataduras."
   }
 ];
 
+// Triplicate for seamless infinite scroll
 const infiniteFeatures = [...features, ...features, ...features];
 
 export function WhyTera() {
@@ -83,14 +85,16 @@ export function WhyTera() {
       }
     };
 
+    // Start in the middle segment
     el.scrollLeft = segment;
+
     el.addEventListener("scroll", handleScroll, { passive: true });
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section
-      id="why-tera"
+      id="por-que-tera"
       className="relative overflow-hidden bg-gradient-to-br from-[#060b16] via-navy to-[#0f2744] pb-16 pt-16 md:pb-24 md:pt-24"
     >
       <div
@@ -105,20 +109,22 @@ export function WhyTera() {
       <div className="container relative">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-            Why teams choose Tera
+            ¿Por qué trabajar con Tera?
           </h2>
           <p className="mt-3 text-sm text-white/70 md:text-base">
-            We are not here to win an award and vanish. We build software your staff and customers
-            will keep using after launch week.
+            No solo hacemos páginas bonitas. Hacemos páginas que te ayudan a
+            vender, conseguir clientes y que la gente te encuentre.
           </p>
-          <p className="mt-4 text-sm font-medium text-tera-green">{siteConfig.socialProof}</p>
+          <p className="mt-4 text-sm font-medium text-tera-green">
+            {siteConfig.socialProof}
+          </p>
         </div>
 
+        {/* Infinite carousel - botones fuera del carousel */}
         <div className="mx-auto mt-10 flex items-center gap-3 md:mt-14">
           <button
-            type="button"
             onClick={() => scroll("left")}
-            aria-label="Previous"
+            aria-label="Anterior"
             className="hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-navy/90 text-white/80 transition hover:bg-white/10 hover:text-white md:flex"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -136,7 +142,7 @@ export function WhyTera() {
                   style={{
                     scrollSnapAlign: "start",
                     width: CARD_WIDTH,
-                    minHeight: CARD_HEIGHT
+                    height: CARD_HEIGHT
                   }}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -148,7 +154,7 @@ export function WhyTera() {
                   </div>
                   <div>
                     <h3 className="text-base font-semibold">{feature.title}</h3>
-                    <p className="mt-2 line-clamp-4 text-sm leading-snug text-white/70">
+                    <p className="mt-2 text-sm leading-snug text-white/70 line-clamp-3">
                       {feature.description}
                     </p>
                   </div>
@@ -157,15 +163,15 @@ export function WhyTera() {
             </div>
           </div>
           <button
-            type="button"
             onClick={() => scroll("right")}
-            aria-label="Next"
+            aria-label="Siguiente"
             className="hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-navy/90 text-white/80 transition hover:bg-white/10 hover:text-white md:flex"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
 
+        {/* Review below carousel */}
         <motion.div
           className="mx-auto mt-12 flex max-w-2xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-8"
           initial={{ opacity: 0, y: 20 }}
@@ -175,16 +181,13 @@ export function WhyTera() {
         >
           <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/10 md:h-24 md:w-24">
             {testimonial.imageUrl ? (
-              <Image
+              <img
                 src={testimonial.imageUrl}
                 alt={`${testimonial.author}, ${testimonial.companyName}`}
-                width={96}
-                height={96}
                 className="h-full w-full object-cover"
-                sizes="96px"
               />
             ) : (
-              <User className="h-12 w-12 text-white/40" aria-hidden />
+              <User className="h-12 w-12 text-white/40" />
             )}
           </div>
           <div className="flex-1 text-center sm:text-left">
@@ -193,22 +196,21 @@ export function WhyTera() {
             </blockquote>
             <cite className="mt-4 block text-sm not-italic text-white/60">
               — {testimonial.author}
-              {testimonial.companyName &&
-                (testimonial.companyUrl ? (
-                  <>
-                    ,{" "}
-                    <a
-                      href={testimonial.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white underline decoration-white/40 underline-offset-2 hover:text-white/90 hover:decoration-white/60"
-                    >
-                      {testimonial.companyName}
-                    </a>
-                  </>
-                ) : (
-                  `, ${testimonial.companyName}`
-                ))}
+              {testimonial.companyName && testimonial.companyUrl ? (
+                <>
+                  ,{" "}
+                  <a
+                    href={testimonial.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white underline decoration-white/40 underline-offset-2 hover:text-white/90 hover:decoration-white/60"
+                  >
+                    {testimonial.companyName}
+                  </a>
+                </>
+              ) : (
+                testimonial.companyName && `, ${testimonial.companyName}`
+              )}
             </cite>
           </div>
         </motion.div>

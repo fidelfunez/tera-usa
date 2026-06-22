@@ -1,41 +1,34 @@
 export const siteConfig = {
   name: "Tera",
-  tagline: "Custom software—clear scope, no agency runaround.",
-  url: "https://www.buildwithtera.com",
+  brandName: "Tera",
+  tagline: "Arquitectura digital para empresas ambiciosas.",
   description:
-    "Tera builds custom websites, apps, and internal tools for U.S. businesses. We ship quickly, keep adoption simple, and scope work to how you already operate.",
-  /**
-   * Contact form POST URL. Set `NEXT_PUBLIC_FORMSPREE_ID` to either:
-   * - full URL from Formspree (e.g. `https://formspree.io/p/…/f/contact`), or
-   * - classic slug only (letters/numbers after `/f/` in the integration link).
-   */
-  formspreeSubmitUrl: (() => {
-    const raw = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim() ?? "";
-    if (!raw || raw === "REPLACE_WITH_YOUR_FORMSPREE_ID") return "";
-    if (/^https?:\/\//i.test(raw)) return raw;
-    return `https://formspree.io/f/${raw}`;
-  })(),
-  contactEmail: "howdy@buildwithtera.com",
+    "Tera diseña sitios web, aplicaciones, automatizaciones y sistemas de IA para empresas en Honduras y Latinoamérica. Socio tecnológico estratégico, no agencia de páginas web.",
+  url: "https://buildwithtera.com",
+  locale: "es_HN",
+  ogImage: "/Tera - Facebook Cover.png",
   navLinks: [
-    { href: "#work", label: "Work" },
-    { href: "#engagements", label: "What we build" },
-    { href: "#process", label: "Process" },
-    { href: "#why-tera", label: "Why Tera" },
-    { href: "#faq", label: "FAQ" },
-    { href: "#contact", label: "Contact" }
-  ] as const,
-  socialProof:
-    "Owners and operators across Texas and the U.S. hire Tera for public sites and the tools their teams use every day.",
-  testimonial: {
-    quote:
-      "We stopped losing updates in chat. The crew does one short report at the end of the day. I finally see every job in one place.",
-    author: "Marnie Alonzo",
-    companyName: "Shark Builders LLC, Arizona",
-    companyUrl: null as string | null,
-    imageUrl: "/marnie-alonzo-shark-builders-llc-founder.png"
-  },
+    { href: "/#filosofia", label: "Filosofía" },
+    { href: "/#capacidades", label: "Capacidades" },
+    { href: "/trabajo", label: "Trabajo" },
+    { href: "/proyecto", label: "Proyecto" }
+  ],
+  contactEmail: "hi@buildwithtera.com",
   social: {
     facebook: "https://www.facebook.com/teralatam.co",
     instagram: "https://www.instagram.com/teralatam/"
-  }
-} as const;
+  },
+  socialProof: "Empresas en Honduras y LATAM confían en nuestra arquitectura digital.",
+  testimonial: {
+    quote:
+      "La página quedó excelente. Se nota el amor, la dedicación y la atención al detalle que Tera puso en cada etapa del proceso. Fue un placer trabajar con un equipo tan profesional, organizado y comprometido.",
+    author: "Manuela & Luis Andrés",
+    companyName: "Girón & Schwartz",
+    companyUrl: "https://www.gironschwartz.com",
+    imageUrl: null as string | null
+  },
+  mapEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.293933876542!2d-87.23013742468278!3d14.059812486364892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6f976a63220f33%3A0xecbbf7ecdbde7ce7!2sVentu%20Life%20Center!5e0!3m2!1sen!2sus!4v1773119557510!5m2!1sen!2sus"
+};
+
+export type SiteConfig = typeof siteConfig;

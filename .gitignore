@@ -1,29 +1,54 @@
-# dependencies
-/node_modules
+# Dependencies
+node_modules/
 /.pnp
 .pnp.js
-.yarn/install-state.gz
 
-# testing
-/coverage
+# Next.js
+.next/
+out/
 
-# next.js
-/.next/
-/out/
+# Production
+/build
 
-# misc
-.DS_Store
-*.pem
-
-# Env & secrets (never commit real keys)
+# Environment variables (never commit secrets)
 .env
-.env.*
-!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
 
-# debug
+# Debug & logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 
-# typescript
+# Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Cache
+.npm
+.eslintcache
+.turbo
+
+# IDE & editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
 next-env.d.ts

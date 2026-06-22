@@ -2,3 +2,32 @@
 [build]
   command = "npm run build"
   publish = "out"
+
+# Canonical: buildwithtera.com (non-www)
+[[redirects]]
+  from = "https://www.buildwithtera.com/*"
+  to = "https://buildwithtera.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.buildwithtera.com"
+  to = "https://buildwithtera.com"
+  status = 301
+  force = true
+
+# Legacy paths
+[[redirects]]
+  from = "/paquetes"
+  to = "/proyecto"
+  status = 301
+
+[[redirects]]
+  from = "/contacto"
+  to = "/proyecto"
+  status = 301
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacidad"
+  status = 301

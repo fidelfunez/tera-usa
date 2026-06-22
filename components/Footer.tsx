@@ -1,74 +1,63 @@
 import Link from "next/link";
+import { siteConfig } from "../config/site";
 import { Facebook, Instagram } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black/40 py-6 text-xs text-white/60">
-      <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div className="flex flex-col items-center gap-3 md:flex-row md:items-center md:gap-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-white/10 p-0.5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/tera-nav-logo-96.webp"
-                width={96}
-                height={96}
-                alt={siteConfig.name}
-                className="h-full w-full scale-105 object-contain"
-              />
+    <footer className="border-t border-border bg-paper py-10 text-sm text-stone">
+      <div className="container">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <Logo size="sm" />
+              <div>
+                <p className="font-display font-bold text-ink">{siteConfig.name}</p>
+                <p className="text-xs text-stone">{siteConfig.tagline}</p>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="font-medium text-white/90">{siteConfig.name}</span>
-              <span className="text-[11px]">{siteConfig.tagline}</span>
+            <div className="flex items-center gap-2">
+              <a
+                href={siteConfig.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-stone transition hover:border-ink hover:text-ink"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-stone transition hover:border-ink hover:text-ink"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <a
-              href={siteConfig.social.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white"
-            >
-              <Facebook className="h-4 w-4" />
-            </a>
-            <a
-              href={siteConfig.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
+
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/#filosofia" className="transition hover:text-ink">Filosofía</Link>
+            <Link href="/#capacidades" className="transition hover:text-ink">Capacidades</Link>
+            <Link href="/trabajo" className="transition hover:text-ink">Trabajo</Link>
+            <Link href="/proyecto" className="transition hover:text-ink">Proyecto</Link>
+            <Link href="/privacidad" className="transition hover:text-ink">Privacidad</Link>
           </div>
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <a href="#work" className="text-white transition hover:opacity-90">
-            Work
-          </a>
-          <a href="#engagements" className="text-white transition hover:opacity-90">
-            What we build
-          </a>
-          <a href="#process" className="text-white transition hover:opacity-90">
-            Process
-          </a>
-          <a href="#faq" className="text-white transition hover:opacity-90">
-            FAQ
-          </a>
-          <a href="#contact" className="text-white transition hover:opacity-90">
-            Contact
-          </a>
-          <Link href="/privacy" className="text-white transition hover:opacity-90">
-            Privacy
-          </Link>
-        </div>
-        <div className="text-center text-[11px] md:text-right">
-          <p>Built with care · The Woodlands, Texas · Serving U.S. businesses nationwide</p>
-          <p className="mt-1">
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-          </p>
+
+          <div className="text-xs md:text-right">
+            <p>Honduras · Latinoamérica</p>
+            <a
+              href={`mailto:${siteConfig.contactEmail}`}
+              className="mt-1 block transition hover:text-ink"
+            >
+              {siteConfig.contactEmail}
+            </a>
+            <p className="mt-3 text-stone">
+              © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

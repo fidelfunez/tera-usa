@@ -2,30 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+html,
+body {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background-color: #1a2e4a;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #0a0a0a;
   -webkit-font-smoothing: antialiased;
 }
 
-section[id] {
-  scroll-margin-top: 5rem;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }

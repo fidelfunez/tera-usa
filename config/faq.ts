@@ -1,37 +1,47 @@
-export const faqs = [
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const faqs: FaqItem[] = [
   {
-    question: "Do we need to know anything technical?",
+    question: "¿Cómo decide Tera si acepta un proyecto?",
     answer:
-      "No. You bring how the business works; we turn that into a clear scope, screens, and launch plan. You approve milestones in plain language—not jargon."
+      "Evaluamos el fit entre lo que necesitás y lo que podemos construir con excelencia. Nos importa la calidad de la marca, la claridad del problema y la disposición para colaborar. No es sobre el tamaño de la empresa, sino sobre el proyecto."
   },
   {
-    question: "What does a typical engagement look like?",
+    question: "¿Trabajan con empresas pequeñas?",
     answer:
-      "We start with a discovery call. Then you get a written scope: what we’re building, timeline, and cost. We build in steps you can see, with weekly check-ins, until launch."
+      "Sí. Una PYME con marca fuerte y brand guidelines definidos puede ser el proyecto ideal. Lo que buscamos es ambición y criterio, no volumen de facturación."
   },
   {
-    question: "How fast can we ship?",
+    question: "¿Cuánto cuesta un proyecto?",
     answer:
-      "Small, well-defined work can go live in a few weeks. Bigger portals or operations tools take longer. You get honest dates before you commit—not a surprise timeline later."
+      "Cada proyecto se cotiza según alcance, complejidad y plazo. No publicamos precios porque cada sistema es distinto. Conversemos y te damos una propuesta clara, sin letra pequeña."
   },
   {
-    question: "Will this work on phones?",
+    question: "¿Cuánto tiempo tarda un proyecto?",
     answer:
-      "Yes. Customer- and field-facing work is mobile-first. Internal dashboards work on tablet and desktop at minimum."
+      "Depende del alcance. Un sitio web premium puede tomar 3–6 semanas. Una aplicación o plataforma puede requerir meses. Definimos plazos realistas en la propuesta inicial."
   },
   {
-    question: "Who do we talk to during the project?",
+    question: "¿Trabajan fuera de Honduras?",
     answer:
-      "You talk to the people building the software. No account managers in the middle relaying feedback."
+      "Sí. Trabajamos con clientes en toda Latinoamérica. Coordinamos por videollamada, WhatsApp y correo."
   },
   {
-    question: "What about after launch?",
+    question: "¿Necesito saber de tecnología?",
     answer:
-      "We don’t disappear after launch. Add a care plan for ongoing support, or call us when you’re ready for the next phase."
+      "No. Nos encargamos de la arquitectura técnica. Necesitamos entender tu negocio, tus operaciones y lo que querés lograr. El resto es nuestro trabajo."
   },
   {
-    question: "Where are you based?",
+    question: "¿Qué pasa después del lanzamiento?",
     answer:
-      "We’re remote-first with U.S. clients: clear async updates and scheduled calls whenever a decision is needed."
+      "Los sistemas digitales evolucionan. Ofrecemos mantenimiento, iteraciones y soporte para que tu infraestructura crezca con tu empresa."
+  },
+  {
+    question: "¿Por qué no hay precios en el sitio?",
+    answer:
+      "Porque no vendemos paquetes genéricos. Cada proyecto tiene distinta arquitectura, distinto alcance y distinto valor. Preferimos conversar antes de cotizar."
   }
-] as const;
+];

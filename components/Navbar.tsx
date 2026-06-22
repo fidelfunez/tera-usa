@@ -1,50 +1,39 @@
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
+import { Logo } from "./Logo";
+import { siteConfig } from "../config/site";
+import { WHATSAPP_URL } from "../config/whatsapp";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/5 bg-navy/80 backdrop-blur">
-      <nav className="container flex h-16 items-center justify-between md:h-20">
-        <Link
-          href="/"
-          className="flex items-center gap-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-blue focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
-        >
-          <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-lg bg-white/10 p-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/tera-nav-logo-96.webp"
-              width={96}
-              height={96}
-              alt={siteConfig.name}
-              className="h-full w-full scale-105 object-contain"
-            />
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="text-base font-semibold tracking-tight">{siteConfig.name}</span>
-            <span className="hidden text-xs text-white/60 md:inline">{siteConfig.tagline}</span>
-          </div>
+    <header className="sticky top-0 z-30 border-b border-border bg-white/90 backdrop-blur-md">
+      <nav className="container flex h-16 items-center justify-between md:h-[4.5rem]">
+        <Link href="/" className="flex items-center gap-3 group">
+          <Logo />
+          <span className="font-display text-lg font-bold tracking-tight text-ink">
+            {siteConfig.name}
+          </span>
         </Link>
 
         <div className="hidden items-center gap-8 text-sm md:flex">
           {siteConfig.navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="text-white transition hover:opacity-90"
+              className="text-stone transition hover:text-ink"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
-        <div className="flex items-center">
-          <Link
-            href="#contact"
-            className="rounded-full bg-tera-green px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-tera-green/40 transition hover:brightness-110 md:px-5 md:py-2.5 md:text-sm"
-          >
-            Start a project
-          </Link>
-        </div>
+        <Link
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full bg-ink px-4 py-2 text-xs font-medium text-white transition hover:bg-charcoal md:px-5 md:py-2.5 md:text-sm"
+        >
+          Conversemos
+        </Link>
       </nav>
     </header>
   );
